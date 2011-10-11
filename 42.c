@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
-int is_square(int n)
-{
-  int root = sqrt(n);
-  return root * root == n;
-}
+#include "helpers.h"
 
 int main(int argc, const char *argv[])
 {
@@ -21,7 +18,7 @@ int main(int argc, const char *argv[])
     word_sum -= word_len * 64;
     extra = (int)floor(sqrt(word_sum * 2));
     possible_square = word_sum * 2 - extra;
-    if (is_square(possible_square)) {
+    if (square(possible_square)) {
       result++;
       printf("%s, %d\n", word, word_sum);
     }

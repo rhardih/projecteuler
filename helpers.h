@@ -8,6 +8,6 @@ int array_sum(int *arr, int len);
 
 int rotate_right(int n);
 
-int is_square(int n);
+int square(int n);
 
 int pandigital(unsigned int n);

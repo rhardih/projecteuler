@@ -29,7 +29,8 @@ int prime(int n)
   }
   else {
     double sr = sqrt(n);
-    for (int i = 6; i - 1 <= sr; i += 6) {
+    int i;
+    for (i = 6; i - 1 <= sr; i += 6) {
       if ((n % (i - 1)) == 0 ||
           (n % (i + 1)) == 0) {
         return 0;
@@ -60,13 +61,13 @@ int rotate_right(int n)
   return (ones * pow(10, magnitude)) + decimated;
 }
 
-int is_square(int n)
-{
-  int root = sqrt(n);
-  if (root * root == n) {
-    return 1;
-  }
-  return 0;
+/**
+ * Returns whether n is square
+ */
+int square(int n)
+{ 
+    int root = sqrt(n);
+    return root * root == n;
 }
 
 /**
