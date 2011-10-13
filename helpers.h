@@ -10,4 +10,6 @@ int rotate_right(int n);
 
 int square(int n);
 
-int pandigital(unsigned int n);
+int pandigital(long n);
+
+int disect(n, x, y);

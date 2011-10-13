@@ -74,7 +74,7 @@ int square(int n)
  * Returns whether n is a pandigital number
  * O(log(n)) 
  */
-int pandigital(unsigned int n) { // max 4294967295, ten digits
+int pandigital(long n) { // max 4294967295, ten digits
   
   short digits[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
   short magnitude = 0;
@@ -86,9 +86,28 @@ int pandigital(unsigned int n) { // max 4294967295, ten digits
   }
   
   short result = 1, i;
-  for (i = 1; i <= magnitude; i++) { // not counting zero
+  for (i = 0; i < magnitude; i++) { // not counting zero
+    //printf("i: %d, di: %d\n", i, digits[i]);
     result &= digits[i];
   }
   
   return result;
 }
+
+/**
+ *  * Takes a 10 digit number, n, and returns a new number
+ *   * consisting of n_{x}, n_{x+1}, ..., n_{y-1}, n_{y},
+ *    * where x and y are positions of individual digits in n.
+ *     */
+int disect(n, x, y) {
+  int nlength = (int)ceil(log10(n));
+  if(x <= 0) x = 1;
+  if(y <= 0) y = 1;
+  if(x > nlength) x = nlength;
+  if(y > nlength) y = nlength;
+  int tmp0 = n / pow(10, nlength - y);
+  int tmp1 = pow(10, y - x + 1);
+  int tmp2 = (tmp0 / tmp1) * tmp1;
+  return tmp0 - tmp2;
+}
+
