@@ -111,3 +111,25 @@ int disect(n, x, y) {
   return tmp0 - tmp2;
 }
 
+typedef struct ftuple
+{
+  float a;
+  float b;
+} ftuple_t;
+
+/* 2nd degree polynomial solver */
+ftuple_t p2_solver(float a, float b, float c)
+{
+  ftuple_t result;
+  float d = pow(b, 2) - 4 * a * c;
+  if(d > 0) {
+    result.a = (-b + sqrt(d)) / 2 * a;
+    result.b = (-b - sqrt(d)) / 2 * a;
+  } else if(d == 0) {
+    result.a = result.b = (-b + sqrt(d)) / 2 * a;
+  } else {
+    result.a = result.b = -1;
+  }
+  return result;
+}
+
