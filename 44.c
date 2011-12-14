@@ -14,7 +14,7 @@
 #include <limits.h>
 
 #define P(n) ((n) * (3 * (n) - 1) / 2)
-#define LIMIT 10000
+#define LIMIT 3000
 
 int main(int argc, const char *argv[])
 {
