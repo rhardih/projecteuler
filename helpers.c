@@ -95,10 +95,10 @@ int pandigital(long n) { // max 4294967295, ten digits
 }
 
 /**
- *  * Takes a 10 digit number, n, and returns a new number
- *   * consisting of n_{x}, n_{x+1}, ..., n_{y-1}, n_{y},
- *    * where x and y are positions of individual digits in n.
- *     */
+ * Takes a 10 digit number, n, and returns a new number
+ * consisting of n_{x}, n_{x+1}, ..., n_{y-1}, n_{y},
+ * where x and y are positions of individual digits in n.
+ */
 int disect(n, x, y) {
   int nlength = (int)ceil(log10(n));
   if(x <= 0) x = 1;
