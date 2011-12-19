@@ -16,5 +16,8 @@ helpers.o : helpers.c helpers.h
 46: helpers.o
 	gcc -o problem 46.c helpers.o
 
+47:
+	gcc -o -problem 47.c
+
 clean :
 	rm -f problem *.o
