@@ -3,7 +3,8 @@
 #include "helpers.h"
 
 /* greatest common divisor */
-int gcd(int a, int b) {
+int gcd(int a, int b)
+{
   int t;
   while (b != 0) {
     t = b;
@@ -14,7 +15,8 @@ int gcd(int a, int b) {
 }
 
 /* least common multiple */
-int lcm(int a, int b) {
+int lcm(int a, int b)
+{
   return a * b / gcd(a, b);
 }
 
@@ -99,7 +101,7 @@ int pandigital(long n) { // max 4294967295, ten digits
  * consisting of n_{x}, n_{x+1}, ..., n_{y-1}, n_{y},
  * where x and y are positions of individual digits in n.
  */
-int disect(n, x, y) {
+int disect(int n, int x, int y) {
   int nlength = (int)ceil(log10(n));
   if(x <= 0) x = 1;
   if(y <= 0) y = 1;
@@ -110,12 +112,6 @@ int disect(n, x, y) {
   int tmp2 = (tmp0 / tmp1) * tmp1;
   return tmp0 - tmp2;
 }
-
-typedef struct ftuple
-{
-  float a;
-  float b;
-} ftuple_t;
 
 /* 2nd degree polynomial solver */
 ftuple_t p2_solver(float a, float b, float c)

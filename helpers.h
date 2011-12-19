@@ -12,4 +12,13 @@ int square(int n);
 
 int pandigital(long n);
 
-int disect(n, x, y);
+int disect(int n, int x, int y);
+
+typedef struct ftuple
+{
+  float a;
+  float b;
+} ftuple_t;
+
+ftuple_t p2_solver(float a, float b, float c);
+
