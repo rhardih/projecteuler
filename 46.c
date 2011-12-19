@@ -14,9 +14,41 @@
  */
 
 #include <stdio.h>
+#include <math.h>
+#include "helpers.h"
 
 int main(int argc, const char *argv[])
 {
+  int count = 33;
+  int i, tmp0, tmp1, lim, result;
+
+  while(1)
+  {
+
+    count++;
+
+    if((count % 2 == 0) ||
+      (prime(count)))
+    {
+      continue;
+    }
+
+    for (i = floor(sqrt(count / 2)); i >= 1; i--) {
+      tmp0 = 2 * i * i;
+      tmp1 = count - tmp0;
+      if (prime(tmp1)) {
+        //printf("%d, can be written as %d + 2 * %d^2\n", count, tmp1, i);
+        break;
+      }
+
+      if (i == 1) {
+        printf("Result: %d, cannot be written on form x + 2 * y ^ 2;", count);
+        return 0;
+      }
+
+    }
+
+  }
   
   return 0;
 }
