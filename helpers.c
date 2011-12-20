@@ -129,3 +129,10 @@ ftuple_t p2_solver(float a, float b, float c)
   return result;
 }
 
+/**
+ * Returns the factorial of n.
+ */
+int factorial(int n)
+{ 
+  return n == 2 ? 2 : n * factorial(n - 1);
+}

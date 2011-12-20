@@ -22,3 +22,4 @@ typedef struct ftuple
 
 ftuple_t p2_solver(float a, float b, float c);
 
+int factorial(int n);
