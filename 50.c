@@ -12,7 +12,7 @@
 #include <stdio.h>
 
 #include "helpers.h"
-#include "primes.h"
+#include "primes.10k.h"
 
 #define MAX_TERMS 1000
 #define MAX_PRIMES 2000
