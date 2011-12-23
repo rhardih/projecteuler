@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#include "primes.h"
+#include "primes.10k.h"
 
 #define SEARCH_RANGE 200000
 
