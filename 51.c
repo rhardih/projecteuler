@@ -34,7 +34,6 @@ int main(int argc, const char *argv[])
         family_size = 1;
         for (k = 1; k < 10; k++) {
           sprintf(buf0, "%d", PRIMES[i]);
-          // replace all of that digit with 0-9
           magnitude = (int)log10(PRIMES[i]) + 1;
           for (l = 0; l < magnitude; l++) {
             tmp1 = buf0[l] - 48; // 48 is ascii value for '0'
