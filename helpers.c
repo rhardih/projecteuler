@@ -1,4 +1,5 @@
 #include <math.h>
+#include <stdlib.h>
 
 #include "helpers.h"
 
@@ -132,7 +133,36 @@ ftuple_t p2_solver(float a, float b, float c)
 /**
  * Returns the factorial of n.
  */
-int factorial(int n)
+long unsigned int factorial(int n)
 { 
-  return n == 2 ? 2 : n * factorial(n - 1);
+  return n == 0 ? 1 : n * factorial(n - 1);
+}
+
+
+/**
+ * Returns the factorial of n. (memoized version)
+ */
+unsigned int mfactorial(int n)
+{
+  static int allocated = 0;
+  static int *factorials;
+
+  if(n <= allocated)
+  {
+    return factorials[n];
+  }
+
+  if (allocated == 0) { // init
+    factorials = malloc(sizeof(int) * 2);
+    factorials[0] = factorials[1] = 1;
+    allocated = 2;
+  }
+
+  // Allocate in large chunks
+  if (n > allocated) {
+    allocated += 5000;
+    factorials = realloc(factorials, sizeof(int) * allocated);
+  }
+
+  return n * mfactorial(n - 1);
 }
