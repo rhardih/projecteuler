@@ -7,6 +7,9 @@ helpers.o : helpers.c helpers.h
 23:
 	gcc -o problem 23.c
 
+24:
+	g++ -o problem 24.cc
+
 26:
 	gcc -o problem 26.c
 
