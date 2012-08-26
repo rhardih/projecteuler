@@ -1,0 +1,5 @@
+*.o*
+*.hmap
+*.deb
+build
+Project\ Euler.xcodeproj
