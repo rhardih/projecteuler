@@ -28,9 +28,9 @@ int main (int argc, char const *argv[])
         
         index += 1;
         
-        if(c > 1000)
+        if(c > 500)
         {
-            printf("index: %d, t: %d, c: %d", index, t, c);
+            printf("index: %d, t: %d, c: %d\n", index, t, c);
             break;
         }
 
