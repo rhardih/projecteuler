@@ -1,6 +1,6 @@
 import re
 
-names_raw = open("names.txt", 'r').read()
+names_raw = open("22.names.txt", 'r').read()
 names_arr = re.compile('(")').sub("", names_raw).split(",")
 names_arr.sort()
 
