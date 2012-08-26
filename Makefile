@@ -1,6 +1,9 @@
 helpers.o : helpers.c helpers.h
 	gcc -c helpers.c
 
+33: helpers.o
+	gcc -o problem 33.c helpers.o
+
 42: helpers.o
 	gcc -o problem 42.c helpers.o
 
