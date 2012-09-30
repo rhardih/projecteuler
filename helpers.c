@@ -138,6 +138,15 @@ long unsigned int factorial(int n)
   return n == 0 ? 1 : n * factorial(n - 1);
 }
 
+long unsigned int lfactorial(int n, int lower) {
+  long unsigned int result = n;
+  while(n > lower) {
+    n--;
+    result *= n;
+  }
+  return result;
+}
+
 
 /**
  * Returns the factorial of n. (memoized version)

@@ -24,5 +24,7 @@ ftuple_t p2_solver(float a, float b, float c);
 
 long unsigned int factorial(int n);
 
+long unsigned int lfactorial(int n, int lower);
+
 unsigned int mfactorial(int n);
 
