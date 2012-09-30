@@ -16,6 +16,9 @@ helpers.o : helpers.c helpers.h
 33: helpers.o
 	gcc -o problem 33.c helpers.o
 
+35: helpers.o
+	gcc -o problem 35.c helpers.o
+
 42: helpers.o
 	gcc -o problem 42.c helpers.o
 
