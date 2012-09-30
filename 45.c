@@ -23,7 +23,7 @@
 #define P(n) ((3 * (n) * (n) - n) / 2)
 //#define H(n) (2 * (n) * (n) - n)
 
-main(int argc, const char *argv[])
+int main(int argc, const char *argv[])
 {
   long long n_t = 287, n_p = 165;
   long long tn, pn;
