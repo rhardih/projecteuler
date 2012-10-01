@@ -1,6 +1,9 @@
 helpers.o : helpers.c helpers.h
 	gcc -c helpers.c
 
+test: helpers.o
+	gcc -o test test.c helpers.o
+
 12:
 	gcc -o problem 12.c
 
@@ -53,4 +56,4 @@ helpers.o : helpers.c helpers.h
 	gcc -o problem 53.c helpers.o
 
 clean :
-	rm -f problem *.o
+	rm -f problem test *.o
