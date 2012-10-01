@@ -150,7 +150,7 @@ long unsigned int lfactorial(int n, int lower) {
 /**
  * Factorial of n, looping
  *
- * 2^64 =    18446744073709551615
+ * 2^64    = 18446744073709551615
  * fac(20) = 2432902008176640000
  */
 long unsigned int loopfactorial(int n) {
