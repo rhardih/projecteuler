@@ -131,11 +131,11 @@ ftuple_t p2_solver(float a, float b, float c)
 }
 
 /**
- * Returns the factorial of n.
+ * Factorial of n, recursive
  */
-long unsigned int factorial(int n)
+long unsigned int recursive_factorial(int n)
 { 
-  return n == 0 ? 1 : n * factorial(n - 1);
+  return n == 0 ? 1 : n * recursive_factorial(n - 1);
 }
 
 long unsigned int lfactorial(int n, int lower) {
@@ -147,6 +147,22 @@ long unsigned int lfactorial(int n, int lower) {
   return result;
 }
 
+/**
+ * Factorial of n, looping
+ *
+ * 2^64 =    18446744073709551615
+ * fac(20) = 2432902008176640000
+ */
+long unsigned int loopfactorial(int n) {
+  if(n == 1 || n == 0) return 1;
+
+  long unsigned int result = n;
+  while(n > 2)
+  {
+    result *= --n;
+  }
+  return result;
+}
 
 /**
  * Returns the factorial of n. (memoized version)

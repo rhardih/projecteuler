@@ -22,9 +22,11 @@ typedef struct ftuple
 
 ftuple_t p2_solver(float a, float b, float c);
 
-long unsigned int factorial(int n);
+long unsigned int recursive_factorial(int n);
 
 long unsigned int lfactorial(int n, int lower);
+
+long unsigned int loopfactorial(int n);
 
 unsigned int mfactorial(int n);
 
