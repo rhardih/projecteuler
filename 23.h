@@ -11,3 +11,4 @@ int compare_ints(const void* a, const void* b);
 int sum_of_divisors(int n);
 
 int sum_of_proper_divisors(int n);
+
