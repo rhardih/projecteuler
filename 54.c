@@ -297,7 +297,7 @@ int rank(struct hand h) {
 
   int value = 0;
   int tmp = 0;
-  int offset = 14 * 14 * 14 * 14 * 14;
+  int offset = 7808;
 
   if(tmp = royal_flush(h)) // 60
     value = tmp + offset + 3034;
@@ -317,20 +317,26 @@ int rank(struct hand h) {
     value = tmp + offset;
   else if(tmp = pair(h)) // 2 - 14
     value = tmp + offset;
-  else // 14^5
-    value = h.cards[0].value +
-      h.cards[1].value * 14 +
-      h.cards[2].value * 14 * 14 +
-      h.cards[3].value * 14 * 14 * 14 +
-      h.cards[4].value * 14 * 14 * 14 * 14;
-
-    /*printf("HIGH CARD: %d %d %d %d %d, value: %d\n",*/
-        /*h.cards[0].value,*/
-        /*h.cards[1].value,*/
-        /*h.cards[2].value,*/
-        /*h.cards[3].value,*/
-        /*h.cards[4].value,*/
-        /*value);*/
+  else
+  {
+    // Since all five cards must have a distinct
+    // value in this case, the hand value, can be
+    // represented by a 13 bit number, where the
+    // bit at position x - 2 indicates the presence
+    // of a card with value x. The offset of 2
+    // is due to card value range is from 2-14.
+    //
+    // The maximum value of a high card hand:
+    //
+    // A K Q J 9
+    //
+    // 1111010000000 - 0x1E80 - 7808
+    value = (1 << h.cards[4].value - 2) |
+            (1 << h.cards[3].value - 2) |
+            (1 << h.cards[2].value - 2) |
+            (1 << h.cards[1].value - 2) |
+            (1 << h.cards[0].value - 2);
+  }
 
   return value;
 }
