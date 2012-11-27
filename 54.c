@@ -342,8 +342,8 @@ int rank(struct hand h) {
 }
 
 void test() {
-  struct card c0 = { 10, DIAMONDS };
-  struct card c1 = { 11, DIAMONDS };
+  struct card c0 = { 9, DIAMONDS };
+  struct card c1 = { 11, SPADES };
   struct card c2 = { 12, DIAMONDS };
   struct card c3 = { 13, DIAMONDS };
   struct card c4 = { 14, DIAMONDS };
@@ -355,11 +355,11 @@ void test() {
   h0.cards[3] = c3;
   h0.cards[4] = c4;
 
-  struct card c5 = { 9, HEARTS };
-  struct card c6 = { 10, HEARTS };
-  struct card c7 = { 11, HEARTS };
-  struct card c8 = { 12, HEARTS };
-  struct card c9 = { 13, HEARTS };
+  struct card c5 = { 14, HEARTS };
+  struct card c6 = { 2, HEARTS };
+  struct card c7 = { 3, DIAMONDS };
+  struct card c8 = { 4, HEARTS };
+  struct card c9 = { 5, HEARTS };
 
   struct hand h1;
   h1.cards[0] = c5;
@@ -371,6 +371,7 @@ void test() {
   printf("Rank h0: %d\n", rank(h0));
   printf("Rank h1: %d\n", rank(h1));
 
+  /*printf("High card h0: %d\n", rank(h0));*/
   /*printf("Pair h0: %d\n", pair(h0));*/
   /*printf("Two pairs h1: %d\n", two_pairs(h1));*/
   /*printf("Three of a kind h1: %d\n", three_of_a_kind(h1));*/
@@ -382,12 +383,16 @@ void test() {
   /*printf("Four of a kind h0: %d\n", four_of_a_kind(h0));*/
   /*printf("Four of a kind h1: %d\n", four_of_a_kind(h1));*/
   /*printf("Straight flush h0: %d\n", straight_flush(h0));*/
-  printf("Straight flush h1: %d\n", straight_flush(h1));
-  printf("Royal flush h0: %d\n", royal_flush(h0));
+  /*printf("Straight flush h1: %d\n", straight_flush(h1));*/
+  /*printf("Royal flush h0: %d\n", royal_flush(h0));*/
 }
 
 int main(int argc, char const *argv[])
 {
+
+  /*test();*/
+
+  /*exit(0);*/
 
   char cards[10][3];
   int p1_wins = 0;
@@ -411,17 +416,23 @@ int main(int argc, char const *argv[])
       new_card(cards[9])
     };
 
-    printf("%s %s %s %s %s vs. %s %s %s %s %s\n",
-        cards[0], cards[1], cards[2], cards[3], cards[4],
-        cards[5], cards[6], cards[7], cards[8], cards[9]);
+    if(rank(h1) > 7808) {
+      printf("h1: ");
+      print_hand(h1);
+    }
+
+    if(rank(h2) > 7808) {
+      printf("h2: ");
+      print_hand(h2);
+    }
 
     if(rank(h1) > rank(h2)) {
-      printf("Player 1 wins.\n");
+      /*printf("Player 1 wins.\n");*/
       p1_wins++;
     }
     else
     {
-      printf("Player 2 wins.\n");
+      /*printf("Player 2 wins.\n");*/
     }
   }
 
