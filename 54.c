@@ -283,6 +283,15 @@ int royal_flush(struct hand h) {
   return sum;
 }
 
+void print_hand(struct hand h) {
+  int i;
+  for (i = 0; i < 5; i++)
+  {
+    printf("%d ", h.cards[i].value);
+  }
+  printf("\n");
+}
+
 int rank(struct hand h) {
   qsort(h.cards, 5, sizeof(struct card), compare_cards);
 
