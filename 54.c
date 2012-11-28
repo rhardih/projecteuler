@@ -203,7 +203,6 @@ int three_of_a_kind(struct hand h) {
 }
 
 int straight(struct hand h) {
-  qsort(h.cards, 5, sizeof(struct card), compare_cards);
   int sum = h.cards[0].value, i;
   for (i = 1; i < 5; i++) {
     if(h.cards[i].value != h.cards[i - 1].value + 1)
@@ -215,7 +214,6 @@ int straight(struct hand h) {
 }
 
 int flush(struct hand h) {
-  qsort(h.cards, 5, sizeof(struct card), compare_cards);
   int sum = h.cards[0].value, i;
   for(i = 1; i < 5; i++) {
     if(h.cards[i].suit != h.cards[i - 1].suit)
@@ -227,30 +225,15 @@ int flush(struct hand h) {
 }
 
 int full_house(struct hand h) {
-  qsort(h.cards, 5, sizeof(struct card), compare_cards);
-  int sum = 0;
-  int t = three_of_a_kind(h), p = 0;
-  if (t)
-  {
-    int i;
-    for (i = 1; i < 5; i++)
-    {
-      if(h.cards[i].value == t)
-        continue;
-      else if (h.cards[i].value == h.cards[i - 1].value)
-        p = h.cards[i].value;
-    }
-
-    if (p)
-    {
-      sum = p + t * 100;
-    }
-  }
-  return sum;
+  if(h.cards[0].value == h.cards[1].value &&
+      h.cards[3].value == h.cards[4].value &&
+      (h.cards[1].value == h.cards[2].value ||
+       h.cards[2].value == h.cards[3].value))
+    return 1;
+  return 0;
 }
 
 int four_of_a_kind(struct hand h) {
-  qsort(h.cards, 5, sizeof(struct card), compare_cards);
   int sum = 0;
   if (h.cards[0].value == h.cards[3].value ||
       h.cards[1].value == h.cards[4].value)
