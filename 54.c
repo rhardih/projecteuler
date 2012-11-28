@@ -150,9 +150,10 @@ struct hand {
 
 void print_hand(struct hand h) {
   int i;
+  char stoc[4] = { 'D', 'H', 'C', 'S' };
   for (i = 0; i < 5; i++)
   {
-    printf("%d ", h.cards[i].value);
+    printf("%d%c ", h.cards[i].value, stoc[h.cards[i].suit]);
   }
   printf("\n");
 }
