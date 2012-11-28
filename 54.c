@@ -230,11 +230,10 @@ int full_house(struct hand h) {
 }
 
 int four_of_a_kind(struct hand h) {
-  int sum = 0;
   if (h.cards[0].value == h.cards[3].value ||
       h.cards[1].value == h.cards[4].value)
-    sum = h.cards[1].value;
-  return sum;
+    return 1;
+  return 0;
 }
 
 int straight_flush(struct hand h) {
