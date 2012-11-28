@@ -156,6 +156,15 @@ int cards_sum(struct hand h) {
     h.cards[4].value;
 }
 
+int hand_value(struct hand h) {
+  return (1 << h.cards[4].value - 2) |
+         (1 << h.cards[3].value - 2) |
+         (1 << h.cards[2].value - 2) |
+         (1 << h.cards[1].value - 2) |
+         (1 << h.cards[0].value - 2);
+}
+
+// Returns the index 
 int pair(struct hand h) {
   qsort(h.cards, 5, sizeof(struct card), compare_cards);
   int value = 0, i, j;
