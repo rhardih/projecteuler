@@ -166,13 +166,12 @@ int hand_value(struct hand h) {
 
 // Returns the index 
 int pair(struct hand h) {
-  qsort(h.cards, 5, sizeof(struct card), compare_cards);
-  int value = 0, i, j;
+  int i;
   for(i = 0; i < 4; i++) {
     if(h.cards[i].value == h.cards[i + 1].value)
-      value = h.cards[i].value;
+      return 1;
   }
-  return value;
+  return 0;
 }
 
 int two_pairs(struct hand h) {
