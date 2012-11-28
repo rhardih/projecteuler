@@ -237,15 +237,7 @@ int four_of_a_kind(struct hand h) {
 }
 
 int straight_flush(struct hand h) {
-  int s = straight(h);
-  int f = flush(h);
-  int sum = 0;
-
-  if (s && f) {
-    sum = s;
-  }
-
-  return sum;
+  return straight(h) && flush(h);
 }
 
 int royal_flush(struct hand h) {
