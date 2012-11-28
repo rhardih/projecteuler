@@ -254,50 +254,27 @@ void print_hand(struct hand h) {
 }
 
 int rank(struct hand h) {
-  qsort(h.cards, 5, sizeof(struct card), compare_cards);
+  int value = hand_value(h);
+  int offset = 7936;
 
-  int value = 0;
-  int tmp = 0;
-  int offset = 7808;
-
-  if(tmp = royal_flush(h)) // 60
-    value = tmp + offset + 3034;
-  else if(tmp = straight_flush(h)) // 20 - 60
-    value = tmp + offset + 2974;
-  else if(tmp = four_of_a_kind(h)) // 2 - 14
-    value = tmp + offset + 2960;
-  else if(tmp = full_house(h)) // 203 - 1413
-    value = tmp + offset + 1547;
-  else if(tmp = flush(h)) // 20 - 60
-    value = tmp + offset + 1487;
-  else if(tmp = straight(h)) // 20 - 60
-    value = tmp + offset + 1427;
-  else if(tmp = three_of_a_kind(h)) // 2 - 14
-    value = tmp + offset + 1413;
-  else if(tmp = two_pairs(h)) // 302 - 1413
-    value = tmp + offset;
-  else if(tmp = pair(h)) // 2 - 14
-    value = tmp + offset;
-  else
-  {
-    // Since all five cards must have a distinct
-    // value in this case, the hand value, can be
-    // represented by a 13 bit number, where the
-    // bit at position x - 2 indicates the presence
-    // of a card with value x. The offset of 2
-    // is due to card value range is from 2-14.
-    //
-    // The maximum value of a high card hand:
-    //
-    // A K Q J 9
-    //
-    // 1111010000000 - 0x1E80 - 7808
-    value = (1 << h.cards[4].value - 2) |
-            (1 << h.cards[3].value - 2) |
-            (1 << h.cards[2].value - 2) |
-            (1 << h.cards[1].value - 2) |
-            (1 << h.cards[0].value - 2);
-  }
+  if(royal_flush(h))
+  { value += 9 * offset; printf("Royal flush.\n"); }
+  else if(straight_flush(h))
+  { value += 8 * offset; printf("Straight flush.\n"); }
+  else if(four_of_a_kind(h))
+  { value += 7 * offset; printf("Four of a kind.\n"); }
+  else if(full_house(h))
+  { value += 6 * offset; printf("Full house.\n"); }
+  else if(flush(h))
+  { value += 5 * offset; printf("Flush.\n"); }
+  else if(straight(h))
+  { value += 4 * offset; printf("Straight.\n"); }
+  else if(three_of_a_kind(h))
+  { value += 3 * offset; printf("Three of a kind.\n"); }
+  else if(two_pairs(h))
+  { value += 2 * offset; printf("Two pairs.\n"); }
+  else if(pair(h))
+  { value += offset; printf("Pair.\n"); }
 
   return value;
 }
