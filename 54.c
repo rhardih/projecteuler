@@ -212,14 +212,12 @@ int straight(struct hand h) {
 }
 
 int flush(struct hand h) {
-  int sum = h.cards[0].value, i;
+  int i;
   for(i = 1; i < 5; i++) {
     if(h.cards[i].suit != h.cards[i - 1].suit)
       return 0;
-    else
-      sum += h.cards[i].value;
   }
-  return sum;
+  return 1;
 }
 
 int full_house(struct hand h) {
