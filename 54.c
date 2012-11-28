@@ -44,6 +44,13 @@
  * and in each hand there is a clear winner.
  *
  * How many hands does Player 1 win?
+ *
+ *
+ * Notes:
+ *
+ * Current implementation does not consider A 2 3 4 5 to be a straight. It is not necessary
+ * for this problem, since the input file, poker.txt, does not contain this straight amongst
+ * it's 1000 sample hands.
  */
 
 #include <stdio.h>
