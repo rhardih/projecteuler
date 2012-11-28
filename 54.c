@@ -175,29 +175,20 @@ int pair(struct hand h) {
 }
 
 int two_pairs(struct hand h) {
-  qsort(h.cards, 5, sizeof(struct card), compare_cards);
+  int i, count = 0, tmp = 0;
 
-  int pair0 = 0;
-  int pair1 = pair(h); // Finds the last pair
-
-  if(pair1) {
-    if (h.cards[0].value == h.cards[1].value ||
-        h.cards[0].value == h.cards[2].value)
+  for(i = 0; i < 4; i++) {
+    if(h.cards[i].value == h.cards[i + 1].value &&
+        h.cards[i].value != tmp)
     {
-      pair0 = h.cards[0].value;
-    }
-    else if (h.cards[1].value == h.cards[2].value)
-    {
-      pair0 = h.cards[1].value;
-    }
-
-    if (pair0)
-    {
-      pair0 > pair1 ? (pair0 *= 100) : (pair1 *= 100);
-      return pair0 + pair1;
+      tmp = h.cards[i].value;
+      count++;
     }
   }
 
+  if(count == 2) {
+    return 1;
+  }
   return 0;
 }
 
