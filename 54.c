@@ -148,19 +148,20 @@ struct hand {
   struct card cards[5];
 };
 
+void print_hand(struct hand h) {
+  int i;
+  for (i = 0; i < 5; i++)
+  {
+    printf("%d ", h.cards[i].value);
+  }
+  printf("\n");
+}
+
 int compare_cards (const void * a, const void * b)
 {
   struct card c0 = *(struct card *)a;
   struct card c1 = *(struct card *)b;
   return (c0.value - c1.value);
-}
-
-int cards_sum(struct hand h) {
-  return h.cards[0].value +
-    h.cards[1].value +
-    h.cards[2].value +
-    h.cards[3].value +
-    h.cards[4].value;
 }
 
 int hand_value(struct hand h) {
@@ -249,15 +250,6 @@ int straight_flush(struct hand h) {
 
 int royal_flush(struct hand h) {
   return straight_flush(h) && h.cards[0].value == 10;
-}
-
-void print_hand(struct hand h) {
-  int i;
-  for (i = 0; i < 5; i++)
-  {
-    printf("%d ", h.cards[i].value);
-  }
-  printf("\n");
 }
 
 int rank(struct hand h) {
