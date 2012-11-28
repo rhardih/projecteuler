@@ -241,14 +241,7 @@ int straight_flush(struct hand h) {
 }
 
 int royal_flush(struct hand h) {
-  int sf = straight_flush(h);
-  int sum = 0;
-
-  if(sf && h.cards[0].value == 10) {
-    sum = sf;
-  }
-
-  return sum;
+  return straight_flush(h) && h.cards[0].value == 10;
 }
 
 void print_hand(struct hand h) {
