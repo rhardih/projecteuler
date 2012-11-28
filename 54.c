@@ -193,14 +193,13 @@ int two_pairs(struct hand h) {
 }
 
 int three_of_a_kind(struct hand h) {
-  qsort(h.cards, 5, sizeof(struct card), compare_cards);
-  int value = 0, i;
+  int i;
   for(i = 0; i < 3; i++) {
     if(h.cards[i].value == h.cards[i + 1].value &&
         h.cards[i].value == h.cards[i + 2].value)
-      value = h.cards[i].value;
+      return 1;
   }
-  return value;
+  return 0;
 }
 
 int straight(struct hand h) {
