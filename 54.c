@@ -203,14 +203,12 @@ int three_of_a_kind(struct hand h) {
 }
 
 int straight(struct hand h) {
-  int sum = h.cards[0].value, i;
+  int i;
   for (i = 1; i < 5; i++) {
     if(h.cards[i].value != h.cards[i - 1].value + 1)
       return 0;
-    else
-      sum += h.cards[i].value;
   }
-  return sum;
+  return 1;
 }
 
 int flush(struct hand h) {
