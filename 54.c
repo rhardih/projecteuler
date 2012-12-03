@@ -51,6 +51,13 @@
  * Current implementation does not consider A 2 3 4 5 to be a straight. It is not necessary
  * for this problem, since the input file, poker.txt, does not contain this straight amongst
  * it's 1000 sample hands.
+ *
+ * Representing a poker hand as a 26 bit number.
+ *
+ * First 13 bits holds the significant rank of the hand, last 13 bits
+ * holds the high cards e.g. a pair,  4D 8C 4S 5H QD
+ *
+ * 0000000000100 0010001001000
  */
 
 #include <stdio.h>
