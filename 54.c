@@ -137,15 +137,13 @@ int card_value(char c) {
     case 'A':
       value = 14;
       break;
-    default:
-      break;
   }
 
   return value;
 };
 
-enum suit card_suit(char c) {
-  enum suit s;
+suit_t card_suit(char c) {
+  suit_t s;
 
   switch(c) {
     case 'D':
@@ -167,36 +165,23 @@ enum suit card_suit(char c) {
   return s;
 }
 
-struct card new_card(char *s) {
-  struct card c;
-  c.value = card_value(s[0]);
-  c.suit = card_suit(s[1]);
-
-  return c;
-}
-
-struct hand {
-  struct card cards[5];
-};
-
-void print_hand(struct hand h) {
+void print_hand(hand_t h) {
   int i;
   char stoc[4] = { 'D', 'H', 'C', 'S' };
   for (i = 0; i < 5; i++)
   {
     printf("%d%c ", h.cards[i].value, stoc[h.cards[i].suit]);
   }
-  printf("\n");
 }
 
 int compare_cards (const void * a, const void * b)
 {
-  struct card c0 = *(struct card *)a;
-  struct card c1 = *(struct card *)b;
+  card_t c0 = *(card_t *)a;
+  card_t c1 = *(card_t *)b;
   return (c0.value - c1.value);
 }
 
-int hand_value(struct hand h) {
+int hand_value(hand_t h) {
   return (1 << h.cards[4].value - 2) |
          (1 << h.cards[3].value - 2) |
          (1 << h.cards[2].value - 2) |
