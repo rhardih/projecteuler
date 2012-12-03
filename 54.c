@@ -63,12 +63,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum suit { DIAMONDS, HEARTS, CLUBS, SPADES };
+typedef enum {
+  DIAMONDS,
+  HEARTS,
+  CLUBS,
+  SPADES
+} suit_t;
 
-struct card {
+typedef enum {
+  HIGH_CARD,
+  PAIR,
+  TWO_PAIRS,
+  THREE_OF_A_KIND,
+  STRAIGHT,
+  FLUSH,
+  FULL_HOUSE,
+  FOUR_OF_A_KIND,
+  STRAIGHT_FLUSH,
+  ROYAL_FLUSH
+} rank_t;
+
+typedef struct {
   int value;
-  enum suit suit;
-};
+  suit_t suit;
+} card_t;
+
+typedef struct {
+  card_t cards[5];
+  rank_t rank;
+  int value;
+} hand_t;
 
 int card_value(char c) {
   int value;
