@@ -173,7 +173,15 @@ int hand_value(struct hand h) {
          (1 << h.cards[0].value - 2);
 }
 
-// Returns the index 
+/**
+ * Moves bit i of n, from the lower 13 bits
+ * to the higher 13 bits.
+ */
+int move_bit(int n, int i) {
+  n |= 1 << (13 + i);
+  return n & ~(1 << i);
+}
+
 int pair(struct hand h) {
   int i;
   for(i = 0; i < 4; i++) {
