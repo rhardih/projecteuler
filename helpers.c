@@ -22,7 +22,7 @@ int lcm(int a, int b)
 }
 
 /* Indicates whether n is prime.
- * 
+ *
  * Utilises the fact that all primes p > 3 are of the form 6n +- 1 */
 int prime(int n)
 {
@@ -40,7 +40,7 @@ int prime(int n)
       }
     }
   }
-  
+
   return 1;
 }
 
@@ -68,33 +68,59 @@ int rotate_right(int n)
  * Returns whether n is square
  */
 int square(int n)
-{ 
+{
     int root = sqrt(n);
     return root * root == n;
 }
 
 /**
- * Returns whether n is a pandigital number
- * O(log(n)) 
+ * Returns whether n is a 0-9 pandigital number
  */
 int pandigital(long n) { // max 4294967295, ten digits
-  
+
   short digits[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
   short magnitude = 0;
-  
+
   while (n > 0) {
     digits[n % 10] = 1;
     n /= 10;
     magnitude++;
   }
-  
+
+  if(digits[0]) return 0;
+
   short result = 1, i;
-  for (i = 0; i < magnitude; i++) { // not counting zero
-    //printf("i: %d, di: %d\n", i, digits[i]);
+  for (i = 1; i < magnitude + 1; i++) { // not counting zero
+    /*printf("i: %d, di: %d\n", i, digits[i]);*/
     result &= digits[i];
   }
-  
+
   return result;
+}
+
+/**
+ * Returns whether n is a 0-9 pandigital number
+ * O(log(n))
+ *
+ * It works by setting the bit at position x to one
+ * if x is part a digit in the number n.
+ *
+ * Checking if a digit has already been encountered in n,
+ * is done by xoring the digit bit into place. If it was
+ * already set, the bit will then be zero and the value
+ * of the number must have decreased.
+ */
+int pandigital09(long n) { // max 4294967295, ten digits
+  int mask = 0, tmp;
+
+  while (n > 0) {
+    tmp = mask ^ (1 << (n % 10));
+    if(tmp < mask) return 0;
+    mask = tmp;
+    n /= 10;
+  }
+
+  return mask == 0x3FF;
 }
 
 /**
@@ -134,7 +160,7 @@ ftuple_t p2_solver(float a, float b, float c)
  * Factorial of n, recursive
  */
 long unsigned int recursive_factorial(int n)
-{ 
+{
   return n == 0 ? 1 : n * recursive_factorial(n - 1);
 }
 
