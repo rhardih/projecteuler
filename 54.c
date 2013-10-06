@@ -167,6 +167,7 @@ suit_t card_suit(char c) {
 
 void print_hand(hand_t h) {
   int i;
+  // Suit to char
   char stoc[4] = { 'D', 'H', 'C', 'S' };
   for (i = 0; i < 5; i++)
   {
