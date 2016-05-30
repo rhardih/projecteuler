@@ -183,11 +183,11 @@ int compare_cards (const void * a, const void * b)
 }
 
 int hand_value(hand_t h) {
-  return (1 << h.cards[4].value - 2) |
-         (1 << h.cards[3].value - 2) |
-         (1 << h.cards[2].value - 2) |
-         (1 << h.cards[1].value - 2) |
-         (1 << h.cards[0].value - 2);
+  return (1 << (h.cards[4].value - 2)) |
+         (1 << (h.cards[3].value - 2)) |
+         (1 << (h.cards[2].value - 2)) |
+         (1 << (h.cards[1].value - 2)) |
+         (1 << (h.cards[0].value - 2));
 }
 
 /**
@@ -314,23 +314,23 @@ hand_t new_hand(char cards[5][3]) {
 
   qsort(h.cards, 5, sizeof(card_t), compare_cards);
 
-  if(value = royal_flush(h))
+  if((value = royal_flush(h)))
     h.rank = ROYAL_FLUSH;
-  else if(value = straight_flush(h))
+  else if((value = straight_flush(h)))
     h.rank = STRAIGHT_FLUSH;
-  else if(value = four_of_a_kind(h))
+  else if((value = four_of_a_kind(h)))
     h.rank = FOUR_OF_A_KIND;
-  else if(value = full_house(h))
+  else if((value = full_house(h)))
     h.rank = FULL_HOUSE;
-  else if(value = flush(h))
+  else if((value = flush(h)))
     h.rank = FLUSH;
-  else if(value = straight(h))
+  else if((value = straight(h)))
     h.rank = STRAIGHT;
-  else if(value = three_of_a_kind(h))
+  else if((value = three_of_a_kind(h)))
     h.rank = THREE_OF_A_KIND;
-  else if(value = two_pairs(h))
+  else if((value = two_pairs(h)))
     h.rank = TWO_PAIRS;
-  else if(value = pair(h))
+  else if((value = pair(h)))
     h.rank = PAIR;
   else
   {
