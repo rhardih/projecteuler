@@ -217,3 +217,19 @@ unsigned int mfactorial(int n)
 
   return n * mfactorial(n - 1);
 }
+
+/**
+ * Returns whether n is a palindromic number
+ */
+int palindromic10(int n)
+{
+  int tmp0 = n, tmp1 = 0;
+  while(1)
+  {
+    tmp1 += tmp0 % 10;
+    tmp0 /= 10;
+    if(tmp0) tmp1 *= 10; else break;
+  }
+
+  return n == tmp1;
+}

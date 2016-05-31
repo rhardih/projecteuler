@@ -14,18 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int palindromic10(int n)
-{
-  int tmp0 = n, tmp1 = 0;
-  while(1)
-  {
-    tmp1 += tmp0 % 10;
-    tmp0 /= 10;
-    if(tmp0) tmp1 *= 10; else break;
-  }
-  
-  return n == tmp1;
-}
+#include "helpers.h"
 
 int palindromic2(int n)
 {
