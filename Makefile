@@ -64,5 +64,8 @@ test: helpers.o
 54:
 	gcc -o problem 54.c
 
+55: helpers.o
+	gcc -o problem 55.c helpers.o
+
 clean :
 	rm -f problem test *.o
