@@ -30,4 +30,6 @@ long unsigned int loopfactorial(int n);
 
 unsigned int mfactorial(int n);
 
-int palindromic10(int n);
+long long unsigned int reverse(long long unsigned int n);
+
+int palindromic10(long long unsigned int n);

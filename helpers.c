@@ -219,17 +219,24 @@ unsigned int mfactorial(int n)
 }
 
 /**
- * Returns whether n is a palindromic number
+ *  Returns the number resulting from reversing the order of the digits of n.
  */
-int palindromic10(int n)
-{
-  int tmp0 = n, tmp1 = 0;
-  while(1)
-  {
-    tmp1 += tmp0 % 10;
-    tmp0 /= 10;
-    if(tmp0) tmp1 *= 10; else break;
+long long unsigned int reverse(long long unsigned int n) {
+  long long unsigned int tmp = 0;
+
+  while(n > 0) {
+    tmp *= 10;
+    tmp += n % 10;
+    n /= 10;
   }
 
-  return n == tmp1;
+  return tmp;
+}
+
+/**
+ * Returns whether n is a palindromic number
+ */
+int palindromic10(long long unsigned int n)
+{
+  return n == reverse(n);
 }
