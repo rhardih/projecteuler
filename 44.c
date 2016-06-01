@@ -36,12 +36,15 @@ int main(int argc, const char *argv[])
       }
       sum = pentagonals[j] + pentagonals[k];
       if (sum < pentagonals[LIMIT - 1] && ipentagonals[sum]) {
-        diff = (int)abs(pentagonals[k] - pentagonals[j]);
-        if(ipentagonals[diff]) {
-          printf("j = %d, k = %d, pj = %d, pk = %d\n", j, k, pentagonals[j], pentagonals[k]);
-          printf("Sum = %d, which is the %d pentagonal number\n", sum, ipentagonals[sum]);
-          printf("Diff = %d, which is the %d pentagonal number\n", diff, ipentagonals[diff]);
-          if(result > diff) {
+        diff = (int) abs(pentagonals[k] - pentagonals[j]);
+        if (ipentagonals[diff]) {
+          printf("j = %d, k = %d, pj = %d, pk = %d\n", j, k, pentagonals[j],
+                 pentagonals[k]);
+          printf("Sum = %d, which is the %d pentagonal number\n", sum,
+                 ipentagonals[sum]);
+          printf("Diff = %d, which is the %d pentagonal number\n", diff,
+                 ipentagonals[diff]);
+          if (result > diff) {
             result = diff;
           }
         }

@@ -22,14 +22,11 @@ int main(int argc, const char *argv[])
   int count = 33;
   int i, tmp0, tmp1, lim, result;
 
-  while(1)
-  {
+  while (1) {
 
     count++;
 
-    if((count % 2 == 0) ||
-      (prime(count)))
-    {
+    if ((count % 2 == 0) || (prime(count))) {
       continue;
     }
 
@@ -49,6 +46,6 @@ int main(int argc, const char *argv[])
     }
 
   }
-  
+
   return 0;
 }

@@ -17,12 +17,10 @@ int main(int argc, const char *argv[])
   int i, j;
   int all_match;
 
-  while(1)
-  {
+  while (1) {
     tmp0 = num;
     memset(digits0, 0, sizeof(int) * 10);
-    while(tmp0)
-    {
+    while (tmp0) {
       digits0[tmp0 % 10]++;
       tmp0 /= 10;
     }
@@ -30,18 +28,16 @@ int main(int argc, const char *argv[])
     for (i = 2; i <= 6; i++) {
       tmp1 = num * i;
       memset(digits1, 0, sizeof(int) * 10);
-      while(tmp1)
-      {
+      while (tmp1) {
         digits1[tmp1 % 10]++;
         tmp1 /= 10;
       }
-      if(memcmp(digits0, digits1, sizeof(int) * 10) != 0)
-      {
+      if (memcmp(digits0, digits1, sizeof(int) * 10) != 0) {
         all_match = 0;
         break;
       }
     }
-    if(all_match) {
+    if (all_match) {
       printf("Result: %d\n", num);
       break;
     }

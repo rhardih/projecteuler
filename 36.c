@@ -19,11 +19,13 @@
 int palindromic2(int n)
 {
   int tmp0 = n, tmp1 = 0;
-  while(1)
-  {
+  while (1) {
     tmp1 |= tmp0 & 1;
     tmp0 >>= 1;
-    if(tmp0) tmp1 <<= 1; else break;
+    if (tmp0)
+      tmp1 <<= 1;
+    else
+      break;
   }
   return n == tmp1;
 }
@@ -32,16 +34,16 @@ int main(int argc, char const *argv[])
 {
   int sum = 0;
   char buf[20];
-  
+
   for (int i = 0; i < LIMIT; i++) {
-    if(palindromic10(i) && palindromic2(i)) {
-      printf("%i, ",i);
+    if (palindromic10(i) && palindromic2(i)) {
+      printf("%i, ", i);
       sum += i;
     }
   }
 
   printf("\n\n");
   printf("Answer: %d\n", sum);
-  
+
   return 0;
 }

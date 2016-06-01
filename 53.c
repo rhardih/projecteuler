@@ -36,10 +36,10 @@
 
 #include "helpers.h"
 
-int ncr(n, r) {
+int ncr(n, r)
+{
   int i, j, result = 1;
-  for(i = n, j = 1; i >= n - (r - 1); i--, j++)
-  {
+  for (i = n, j = 1; i >= n - (r - 1); i--, j++) {
     result = (result * i) / j;
   }
   return result;
@@ -49,18 +49,18 @@ int main(int argc, const char *argv[])
 {
   int n, r, sum = 0, _ncr;
 
-  for(n = 23; n <= 100; n++) {
-    for(r = 1; r <= n; r++) {
+  for (n = 23; n <= 100; n++) {
+    for (r = 1; r <= n; r++) {
       _ncr = ncr(n, r);
-      if(_ncr > 1000000) {
+      if (_ncr > 1000000) {
         //printf("%dC%d: %d\n", n, r, _ncr);
         sum++;
       }
     }
   }
-  
-  printf("5C3: %d\n", ncr(5,3));
-  printf("23C10: %d\n", ncr(23,10));
+
+  printf("5C3: %d\n", ncr(5, 3));
+  printf("23C10: %d\n", ncr(23, 10));
   printf("Result: %d\n", sum);
   return 0;
 }

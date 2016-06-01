@@ -11,7 +11,8 @@
 #include <stdlib.h>
 #include <gmp.h>
 
-unsigned long int sum_of_digits(mpz_t n) {
+unsigned long int sum_of_digits(mpz_t n)
+{
   unsigned long int sum = 0, remainder;
 
   mpz_t x;
@@ -33,7 +34,8 @@ unsigned long int sum_of_digits(mpz_t n) {
   return sum;
 }
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char const *argv[])
+{
   int i, err;
   unsigned long int j, sum, max_sum = 0, res;
 

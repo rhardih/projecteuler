@@ -33,8 +33,8 @@ int test_pandigital()
 
 int main(int argc, const char *argv[])
 {
-  /*test_recursive_factorial();*/
-  /*test_loopfactorial();*/
+  /*test_recursive_factorial(); */
+  /*test_loopfactorial(); */
   test_pandigital();
   return 0;
 }

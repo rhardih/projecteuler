@@ -94,10 +94,11 @@ typedef struct {
   int value;
 } hand_t;
 
-int card_value(char c) {
+int card_value(char c)
+{
   int value;
 
-  switch(c) {
+  switch (c) {
     case '2':
       value = 2;
       break;
@@ -142,10 +143,11 @@ int card_value(char c) {
   return value;
 };
 
-suit_t card_suit(char c) {
+suit_t card_suit(char c)
+{
   suit_t s;
 
-  switch(c) {
+  switch (c) {
     case 'D':
       s = DIAMONDS;
       break;
@@ -165,46 +167,48 @@ suit_t card_suit(char c) {
   return s;
 }
 
-void print_hand(hand_t h) {
+void print_hand(hand_t h)
+{
   int i;
   // Suit to char
   char stoc[4] = { 'D', 'H', 'C', 'S' };
-  for (i = 0; i < 5; i++)
-  {
+  for (i = 0; i < 5; i++) {
     printf("%d%c ", h.cards[i].value, stoc[h.cards[i].suit]);
   }
 }
 
-int compare_cards (const void * a, const void * b)
+int compare_cards(const void *a, const void *b)
 {
-  card_t c0 = *(card_t *)a;
-  card_t c1 = *(card_t *)b;
+  card_t c0 = *(card_t *) a;
+  card_t c1 = *(card_t *) b;
   return (c0.value - c1.value);
 }
 
-int hand_value(hand_t h) {
+int hand_value(hand_t h)
+{
   return (1 << (h.cards[4].value - 2)) |
-         (1 << (h.cards[3].value - 2)) |
-         (1 << (h.cards[2].value - 2)) |
-         (1 << (h.cards[1].value - 2)) |
-         (1 << (h.cards[0].value - 2));
+    (1 << (h.cards[3].value - 2)) |
+    (1 << (h.cards[2].value - 2)) |
+    (1 << (h.cards[1].value - 2)) | (1 << (h.cards[0].value - 2));
 }
 
 /**
  * Moves bit i of n, from the lower 13 bits
  * to the higher 13 bits.
  */
-int move_bit(int n, int i) {
+int move_bit(int n, int i)
+{
   n |= 1 << (13 + i);
   return n & ~(1 << i);
 }
 
-int pair(hand_t h) {
+int pair(hand_t h)
+{
   int i;
   int value = 0;
 
-  for(i = 0; i < 4; i++) {
-    if(h.cards[i].value == h.cards[i + 1].value) {
+  for (i = 0; i < 4; i++) {
+    if (h.cards[i].value == h.cards[i + 1].value) {
       value = hand_value(h);
       value = move_bit(value, h.cards[i].value - 2);
       break;
@@ -213,30 +217,33 @@ int pair(hand_t h) {
   return value;
 }
 
-int two_pairs(hand_t h) {
+int two_pairs(hand_t h)
+{
   int i, prev_pair_val = 0, count = 0;
   int value = 0;
 
-  for(i = 0; i < 4; i++) {
-    if(h.cards[i].value == h.cards[i + 1].value &&
-        h.cards[i].value != prev_pair_val)
-    {
-      if (!value) value = hand_value(h);
+  for (i = 0; i < 4; i++) {
+    if (h.cards[i].value == h.cards[i + 1].value &&
+        h.cards[i].value != prev_pair_val) {
+      if (!value)
+        value = hand_value(h);
       value = move_bit(value, h.cards[i].value - 2);
       prev_pair_val = h.cards[i].value;
       count++;
     }
   }
 
-  if(count == 1) value = 0;
+  if (count == 1)
+    value = 0;
 
   return value;
 }
 
-int three_of_a_kind(hand_t h) {
+int three_of_a_kind(hand_t h)
+{
   int i, value = 0;
-  for(i = 0; i < 3; i++) {
-    if(h.cards[i].value == h.cards[i + 1].value &&
+  for (i = 0; i < 3; i++) {
+    if (h.cards[i].value == h.cards[i + 1].value &&
         h.cards[i].value == h.cards[i + 2].value) {
       value = hand_value(h);
       value = move_bit(value, h.cards[i].value - 2);
@@ -245,26 +252,29 @@ int three_of_a_kind(hand_t h) {
   return value;
 }
 
-int straight(hand_t h) {
+int straight(hand_t h)
+{
   int i;
   for (i = 1; i < 5; i++) {
-    if(h.cards[i].value != h.cards[i - 1].value + 1)
+    if (h.cards[i].value != h.cards[i - 1].value + 1)
       return 0;
   }
   return hand_value(h);
 }
 
-int flush(hand_t h) {
+int flush(hand_t h)
+{
   int i;
-  for(i = 1; i < 5; i++) {
-    if(h.cards[i].suit != h.cards[i - 1].suit)
+  for (i = 1; i < 5; i++) {
+    if (h.cards[i].suit != h.cards[i - 1].suit)
       return 0;
   }
   return hand_value(h);
 }
 
-int full_house(hand_t h) {
-  if(h.cards[0].value == h.cards[1].value &&
+int full_house(hand_t h)
+{
+  if (h.cards[0].value == h.cards[1].value &&
       h.cards[3].value == h.cards[4].value &&
       (h.cards[1].value == h.cards[2].value ||
        h.cards[2].value == h.cards[3].value))
@@ -272,7 +282,8 @@ int full_house(hand_t h) {
   return 0;
 }
 
-int four_of_a_kind(hand_t h) {
+int four_of_a_kind(hand_t h)
+{
   if (h.cards[0].value == h.cards[3].value ||
       h.cards[1].value == h.cards[4].value) {
     int value = hand_value(h);
@@ -281,22 +292,25 @@ int four_of_a_kind(hand_t h) {
   return 0;
 }
 
-int straight_flush(hand_t h) {
-  if(straight(h)) {
+int straight_flush(hand_t h)
+{
+  if (straight(h)) {
     return flush(h);
   }
   return 0;
 }
 
-int royal_flush(hand_t h) {
+int royal_flush(hand_t h)
+{
   int value = straight_flush(h);
-  if(value && h.cards[0].value == 10) {
+  if (value && h.cards[0].value == 10) {
     return value;
   }
-  return 0 ;
+  return 0;
 }
 
-card_t new_card(char *s) {
+card_t new_card(char *s)
+{
   card_t c;
   c.value = card_value(s[0]);
   c.suit = card_suit(s[1]);
@@ -304,7 +318,8 @@ card_t new_card(char *s) {
   return c;
 }
 
-hand_t new_hand(char cards[5][3]) {
+hand_t new_hand(char cards[5][3])
+{
   hand_t h;
   int value, i;
 
@@ -314,26 +329,25 @@ hand_t new_hand(char cards[5][3]) {
 
   qsort(h.cards, 5, sizeof(card_t), compare_cards);
 
-  if((value = royal_flush(h)))
+  if ((value = royal_flush(h)))
     h.rank = ROYAL_FLUSH;
-  else if((value = straight_flush(h)))
+  else if ((value = straight_flush(h)))
     h.rank = STRAIGHT_FLUSH;
-  else if((value = four_of_a_kind(h)))
+  else if ((value = four_of_a_kind(h)))
     h.rank = FOUR_OF_A_KIND;
-  else if((value = full_house(h)))
+  else if ((value = full_house(h)))
     h.rank = FULL_HOUSE;
-  else if((value = flush(h)))
+  else if ((value = flush(h)))
     h.rank = FLUSH;
-  else if((value = straight(h)))
+  else if ((value = straight(h)))
     h.rank = STRAIGHT;
-  else if((value = three_of_a_kind(h)))
+  else if ((value = three_of_a_kind(h)))
     h.rank = THREE_OF_A_KIND;
-  else if((value = two_pairs(h)))
+  else if ((value = two_pairs(h)))
     h.rank = TWO_PAIRS;
-  else if((value = pair(h)))
+  else if ((value = pair(h)))
     h.rank = PAIR;
-  else
-  {
+  else {
     value = hand_value(h);
     h.rank = HIGH_CARD;
   }
@@ -343,8 +357,9 @@ hand_t new_hand(char cards[5][3]) {
   return h;
 }
 
-int winner(hand_t h0, hand_t h1) {
-  if(h0.rank == h1.rank) {
+int winner(hand_t h0, hand_t h1)
+{
+  if (h0.rank == h1.rank) {
     return h0.value > h1.value;
   }
   return h0.rank > h1.rank;
@@ -354,14 +369,15 @@ int main(int argc, char const *argv[])
 {
   char cards[10][3];
   int p1_wins = 0;
-  while(scanf("%s %s %s %s %s %s %s %s %s %s\n",
-        cards[0], cards[1], cards[2], cards[3], cards[4],
-        cards[5], cards[6], cards[7], cards[8], cards[9] ) != EOF) {
+  while (scanf("%s %s %s %s %s %s %s %s %s %s\n",
+               cards[0], cards[1], cards[2], cards[3], cards[4],
+               cards[5], cards[6], cards[7], cards[8], cards[9]) != EOF) {
 
     hand_t h0 = new_hand(cards);
     hand_t h1 = new_hand(&cards[5]);
 
-    if(winner(h0, h1)) p1_wins++;
+    if (winner(h0, h1))
+      p1_wins++;
   }
 
   printf("Player 1 wins %d times\n", p1_wins);

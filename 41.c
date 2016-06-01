@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 {
   // Assuming n <= 9
   int result = 0, i;
-  for(i = 987654321; i > 0; i--) {
+  for (i = 987654321; i > 0; i--) {
     if (pandigital(i) && prime(i)) {
       result = i;
       break;

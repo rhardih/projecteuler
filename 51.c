@@ -30,13 +30,13 @@ int main(int argc, const char *argv[])
       tmp0 /= 10;
     }
     for (j = 0; j < 10; j++) {
-      if(digits[j] > 1) {
+      if (digits[j] > 1) {
         family_size = 1;
         for (k = 1; k < 10; k++) {
           sprintf(buf0, "%d", PRIMES[i]);
-          magnitude = (int)log10(PRIMES[i]) + 1;
+          magnitude = (int) log10(PRIMES[i]) + 1;
           for (l = 0; l < magnitude; l++) {
-            tmp1 = buf0[l] - 48; // 48 is ascii value for '0'
+            tmp1 = buf0[l] - 48;        // 48 is ascii value for '0'
             if (tmp1 == j) {
               buf0[l] = ((tmp1 + k) % 10) + 48;
             }
@@ -44,11 +44,11 @@ int main(int argc, const char *argv[])
           sscanf(buf0, "%d", &tmp2);
           // Check magnitude in case a 0 was most significant
           // making a smaller number but still prime
-          if ((int)log10(tmp2) + 1 == magnitude && prime(tmp2)) {
+          if ((int) log10(tmp2) + 1 == magnitude && prime(tmp2)) {
             family_size++;
           }
         }
-        if(family_size == 8) {
+        if (family_size == 8) {
           printf("%d\n", PRIMES[i]);
           return 0;
         }

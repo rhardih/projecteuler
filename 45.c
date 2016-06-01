@@ -28,22 +28,19 @@ int main(int argc, const char *argv[])
   long long n_t = 287, n_p = 165;
   long long tn, pn;
 
-  while (1)
-  {
+  while (1) {
     tn = T(n_t);
     //printf("T(%d) = %d\n", n_t, tn);
-    while((pn = P(n_p)) < tn)
-    {
+    while ((pn = P(n_p)) < tn) {
       //printf("P(%d) = %d\n", n_p, pn);
       n_p++;
     }
-    if(tn == pn)
-    {
+    if (tn == pn) {
       printf("tn = %lld\n", tn);
       break;
     }
     n_t += 2;
   }
-  
+
   return 0;
 }

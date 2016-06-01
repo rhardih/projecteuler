@@ -52,9 +52,8 @@ int main(int argc, const char *argv[])
         prime_sums[i][j] = -1;
       } else {
         prime_sums[i][j] = prime_sums[i][j - 1] + prime_sums[i - j][0];
-        if(prime(prime_sums[i][j]) && 
-          prime_sums[i][j] < 1000000 &&
-          j > most_terms) {
+        if (prime(prime_sums[i][j]) &&
+            prime_sums[i][j] < 1000000 && j > most_terms) {
           most_terms = j + 1;
           most_terms_prime = prime_sums[i][j];
         }
@@ -66,4 +65,3 @@ int main(int argc, const char *argv[])
 
   return 0;
 }
-

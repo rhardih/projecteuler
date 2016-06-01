@@ -36,7 +36,8 @@
 
 #define LIMIT 10000
 
-int lychrel(int n) {
+int lychrel(int n)
+{
   long long unsigned int tmp = n, sum, rev;
   int i;
 
@@ -59,7 +60,8 @@ int main(int argc, char const *argv[])
   int result = 0, i;
 
   for (i = 0; i < LIMIT; i++) {
-    if (lychrel(i))  result++; 
+    if (lychrel(i))
+      result++;
   }
 
   printf("\n\n");

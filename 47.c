@@ -27,17 +27,14 @@
  * Returns 0 if searching for unlisted prime.
  */
 int prime_factorize(int n, int *arr)
-{ 
+{
   int prime_index = 0;
   int factor_index = 0;
-  while(n > 1)
-  {
+  while (n > 1) {
     if (n % PRIMES[prime_index] == 0) {
       arr[factor_index++] = PRIMES[prime_index];
       n /= PRIMES[prime_index];
-    }
-    else
-    {
+    } else {
       prime_index++;
       if (prime_index > PRIME_COUNT - 1) {
         return 0;

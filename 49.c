@@ -32,45 +32,48 @@ int permutations_4d(int n, int *perms)
   int index = 0;
   for (i = 0; i < number_of_digits; i++) {
     for (j = 0; j < number_of_digits; j++) {
-      if(j == i) continue;
+      if (j == i)
+        continue;
       for (k = 0; k < number_of_digits; k++) {
-        if(k == i || k == j) continue;
+        if (k == i || k == j)
+          continue;
         for (l = 0; l < number_of_digits; l++) {
-          if(l == i || l == j || l == k) continue;
+          if (l == i || l == j || l == k)
+            continue;
           perms[index++] =
-          1000 * digits[i] +
-          100 * digits[j] +
-          10 * digits[k] +
-          digits[l];
+            1000 * digits[i] + 100 * digits[j] + 10 * digits[k] + digits[l];
         }
       }
     }
   }
 
   return 0;
-  
+
 }
 
 int main(int argc, const char *argv[])
 {
   int i, j, k, l;
-  int perms[24]; // 4!
+  int perms[24];                // 4!
   int permutation_count;
   int diff0, diff1;
   for (i = 1000; i < 9999; i++) {
     if (prime(i)) {
       permutations_4d(i, perms);
       for (j = 0; j < 24; j++) {
-        if(prime(perms[j])) {
+        if (prime(perms[j])) {
           for (k = j + 1; k < 24; k++) {
-            if(prime(perms[k])) {
+            if (prime(perms[k])) {
               diff0 = perms[j] - perms[k];
-              if (diff0 != 3330) continue;
+              if (diff0 != 3330)
+                continue;
               for (l = k + 1; l < 24; l++) {
-                if(prime(perms[l])) {
+                if (prime(perms[l])) {
                   diff1 = perms[k] - perms[l];
-                  if (diff1 != 3330) continue;
-                  printf("Numbers: %d, %d, %d all have %d between them.\n", perms[l], perms[k], perms[j], diff0);
+                  if (diff1 != 3330)
+                    continue;
+                  printf("Numbers: %d, %d, %d all have %d between them.\n",
+                         perms[l], perms[k], perms[j], diff0);
                 }
               }
             }
