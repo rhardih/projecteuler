@@ -67,5 +67,8 @@ test: helpers.o
 55: helpers.o
 	gcc -o problem 55.c helpers.o
 
+56:
+	gcc -o problem -I /usr/local/include -L /usr/local/lib -lgmp 56.c
+
 clean :
 	rm -f problem test *.o
