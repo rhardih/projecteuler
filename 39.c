@@ -1,24 +1,24 @@
-#include "39.h"
-#include "problems.h"
+/**
+ * If p is the perimeter of a right angle triangle with integral length sides,
+ * {a,b,c}, there are exactly three solutions for p = 120.
+ * 
+ * {20,48,52}, {24,45,51}, {30,40,50}
+ * 
+ * For which value of p ≤ 1000, is the number of solutions maximised?
+ */
 
-#include "helpers.h"
+#include <stdio.h>
+#include <math.h>
 
-char *desc39()
-{
-  return "If p is the perimeter of a right angle triangle with integral length sides, {a,b,c}, there are exactly three solutions for p = 120.\n\n"
-  "{20,48,52}, {24,45,51}, {30,40,50}\n\n"
-  "For which value of p <= 1000, is the number of solutions maximised?";
-}
-
-int run39(char *output)
+int main(int argc, char const *argv[])
 {
   // We have the perimeter p and sides a, b, c
   // 
   // p = a + b + c (1)
+  // c = p - a - b
   //
   // And for a right angled triangle we have
   // a^2 + b^2 = c^2   (2)
-  // c = p - a - b
   //
   // Substituting we get
   // a^2 + b^2 = (p - a - b)^2
@@ -49,28 +49,36 @@ int run39(char *output)
   // and P must then be even.
   //
   // We can therefor conclude that we only need to look for even values of p.
-  
+
   int p, a, b, c, solutions, highest = 0, result = 0;
-  char tmp[1000] = "";
-  for (p = 1; p <= 1000; p += 2) {
+
+  // p = 6 because it's the smallest p for which three integral sides of
+  // a triangle can be found, e.g. 1,2,3 or 2,2,2.
+  for (p = 6; p <= 1000; p += 2) {
     solutions = 0;
+
     for (a = 1; a + 2 < p; a++) {
       b = (pow(p, 2) - 2 * p * a) / (2 * (p - a));
-      c = p - a - b;  
-      if (c == b) {
+      c = p - a - b;
+
+      if (b < 0 || c < 0)
+        continue;
+      if (c == b)
         break;
-      }
+
       if (pow(a, 2) + pow(b, 2) == pow(c, 2)) {
+        /*printf("p: %d, {%d, %d, %d}\n", p, a, b, c); */
         solutions++;
       }
     }
+
     if (solutions > highest) {
-      sprintf(tmp, "%sp: %i, {%i, %i, %i}\n", output, p, a, b, c);
-      sprintf(output, "%s", tmp);
       highest = solutions;
       result = p;
     }
   }
-  
-  return result;
+
+  printf("Answer: %d, solutions: %d\n", result, highest);
+
+  return 0;
 }

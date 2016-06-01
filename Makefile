@@ -31,6 +31,9 @@ test: helpers.o
 38: helpers.o
 	gcc -o problem 38.c helpers.o
 
+39:
+	gcc -o problem 39.c
+
 41: helpers.o
 	gcc -o problem 41.c helpers.o
 
