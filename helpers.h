@@ -14,8 +14,7 @@ int pandigital(long n);
 
 int disect(int n, int x, int y);
 
-typedef struct ftuple
-{
+typedef struct ftuple {
   float a;
   float b;
 } ftuple_t;
