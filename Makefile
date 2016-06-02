@@ -80,7 +80,7 @@ test: helpers.o
 	gcc -o problem -I /usr/local/include -L /usr/local/lib -lgmp 56.c
 
 57:
-	gcc -o problem 57.c
+	gcc -o problem -I /usr/local/include -L /usr/local/lib -lgmp 57.c
 
 clean :
 	rm -f problem test *.o

@@ -21,15 +21,23 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <gmp.h>
 
 int main(int argc, char const *argv[])
 {
-  int i, result;
-  unsigned long int numerator = 3, denominator = 2;
-  unsigned long int num_tmp0, num_tmp1 = 1, den_tmp0, den_tmp1 = 1;
+  int i, result = 0;
+
+  mpz_t numerator, denominator, num_tmp0, num_tmp1, den_tmp0, den_tmp1;
+  mpz_inits(num_tmp0, den_tmp0, NULL);
+  mpz_init_set_ui(numerator, 3);
+  mpz_init_set_ui(denominator, 2);
+  mpz_init_set_ui(num_tmp1, 1);
+  mpz_init_set_ui(den_tmp1, 1);
+
+  char tmp_char;
   int num_magnitude, den_magnitude;
 
-  /**
+  /*
    * The denominator can be derived in series based on the previous value of
    * itself. Looking at the denominator of the initial fractions:
    *
@@ -58,27 +66,32 @@ int main(int argc, char const *argv[])
    */
 
   for (i = 0; i < 1000; i++) {
-    num_tmp0 = numerator;
-    numerator = 2 * numerator + num_tmp1;
-    num_tmp1 = num_tmp0;
+    mpz_set(num_tmp0, numerator);
+    mpz_mul_ui(numerator, numerator, 2);
+    mpz_add(numerator, numerator, num_tmp1);
+    mpz_set(num_tmp1, num_tmp0);
 
-    num_magnitude = (int)floorl(log10l(numerator));
-    printf("%d\n", num_magnitude);
+    // Gmp doesn't include a log function,  so this is a trick to get the number
+    // of digits of a mpz_t.
+    num_magnitude = gmp_snprintf(&tmp_char, 1, "%Zd", numerator);
 
-    den_tmp0 = denominator;
-    denominator = 2 * denominator + den_tmp1;
-    den_tmp1 = den_tmp0;
+    mpz_set(den_tmp0, denominator);
+    mpz_mul_ui(denominator, denominator, 2);
+    mpz_add(denominator, denominator, den_tmp1);
+    mpz_set(den_tmp1, den_tmp0);
 
-    den_magnitude = (int)floor(log10(denominator));
+    den_magnitude = gmp_snprintf(&tmp_char, 1, "%Zd", denominator);
 
     if (num_magnitude > den_magnitude) {
-      printf("%lu/%lu\n", numerator, denominator);
+      /*gmp_printf("%Zd / %Zd\n", numerator, denominator); */
       result++;
     }
-
   }
 
   printf("Answer: %d\n", result);
+
+  mpz_clears(numerator, denominator, num_tmp0, num_tmp1, den_tmp0, den_tmp1,
+             NULL);
 
   return 0;
 }
